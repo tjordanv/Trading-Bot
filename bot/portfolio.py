@@ -86,6 +86,12 @@ class Portfolio:
 
         self._td_client: TDClient = td_client
 
+    def get_ownership_status(self, symbol: str) -> bool:
+        pass
+
+    def set_ownership_status(self, symbol: str, ownership: bool) -> None:
+        pass
+
     def total_allocation(self):
         pass
 
@@ -94,4 +100,5 @@ class Portfolio:
 
     def total_market_value(self):
         pass
+
 

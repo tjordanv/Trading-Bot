@@ -193,26 +193,42 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="414" y="175" width="1092" height="738" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/-1366.207.1366.728@0.0.1920.1040" timestamp="1609607536461" />
-    <state x="740" y="299" key="FileChooserDialogImpl" timestamp="1609607531933">
+    <state x="740" y="299" key="FileChooserDialogImpl" timestamp="1610297626990">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="299" key="FileChooserDialogImpl/0.0.1920.1040/-1366.207.1366.728@0.0.1920.1040" timestamp="1609607531933" />
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1610217392121">
+    <state x="740" y="299" key="FileChooserDialogImpl/0.0.1920.1040/-1366.207.1366.728@0.0.1920.1040" timestamp="1610297626990" />
+    <state width="1899" height="303" key="GridCell.Tab.0.bottom" timestamp="1610925231718">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1366.207.1366.728@0.0.1920.1040" timestamp="1610217392121" />
-    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1610217392121">
+    <state width="1899" height="303" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1366.207.1366.728@0.0.1920.1040" timestamp="1610925231718" />
+    <state width="1899" height="303" key="GridCell.Tab.0.center" timestamp="1610925231718">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/-1366.207.1366.728@0.0.1920.1040" timestamp="1610217392121" />
-    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1610217392121">
+    <state width="1899" height="303" key="GridCell.Tab.0.center/0.0.1920.1040/-1366.207.1366.728@0.0.1920.1040" timestamp="1610925231718" />
+    <state width="1899" height="303" key="GridCell.Tab.0.left" timestamp="1610925231718">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/-1366.207.1366.728@0.0.1920.1040" timestamp="1610217392121" />
-    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1610217392121">
+    <state width="1899" height="303" key="GridCell.Tab.0.left/0.0.1920.1040/-1366.207.1366.728@0.0.1920.1040" timestamp="1610925231718" />
+    <state width="1899" height="303" key="GridCell.Tab.0.right" timestamp="1610925231718">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/-1366.207.1366.728@0.0.1920.1040" timestamp="1610217392121" />
+    <state width="1899" height="303" key="GridCell.Tab.0.right/0.0.1920.1040/-1366.207.1366.728@0.0.1920.1040" timestamp="1610925231718" />
+    <state width="1899" height="348" key="GridCell.Tab.1.bottom" timestamp="1610677394953">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040/-1366.207.1366.728@0.0.1920.1040" timestamp="1610677394953" />
+    <state width="1899" height="348" key="GridCell.Tab.1.center" timestamp="1610677394953">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="348" key="GridCell.Tab.1.center/0.0.1920.1040/-1366.207.1366.728@0.0.1920.1040" timestamp="1610677394953" />
+    <state width="1899" height="348" key="GridCell.Tab.1.left" timestamp="1610677394953">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="348" key="GridCell.Tab.1.left/0.0.1920.1040/-1366.207.1366.728@0.0.1920.1040" timestamp="1610677394953" />
+    <state width="1899" height="348" key="GridCell.Tab.1.right" timestamp="1610677394953">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="348" key="GridCell.Tab.1.right/0.0.1920.1040/-1366.207.1366.728@0.0.1920.1040" timestamp="1610677394953" />
     <state x="461" y="165" key="SettingsEditor" timestamp="1610116596957">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -227,7 +243,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/bot/indicators.py</url>
-          <line>98</line>
+          <line>99</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>

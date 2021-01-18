@@ -20,7 +20,8 @@ class Trade():
         self._triggered_added = False
         self._multi_leg = False
 
-    def new_trade(self, trade_id: str, order_type: str, side: str, enter_or_exit: str, price: float = 0.0, stop_limit_price: float = 0.0) -> dict:
+    def new_trade(self, trade_id: str, order_type: str, side: str, enter_or_exit: str, price: float = 0.0,
+                  stop_limit_price: float = 0.0) -> dict:
         self.trade_id = trade_id
 
         self.order_types = {
@@ -102,7 +103,8 @@ class Trade():
 
         return self.order
 
-    def instrument(self, symbol: str, quantity: int, asset_type: str, sub_asset_type: str = None, order_leg_id: int = 0) -> dict:
+    def instrument(self, symbol: str, quantity: int, asset_type: str, sub_asset_type: str = None,
+                   order_leg_id: int = 0) -> dict:
         leg = self.order['orderLegCollection'][order_leg_id]
 
         leg['instrument']['symbol'] = symbol
@@ -176,7 +178,8 @@ class Trade():
 
         return True
 
-    def add_stop_limit(self, stop_size: float, limit_size: float, stop_percentage: bool = False, limit_percentage: bool = False) -> bool:
+    def add_stop_limit(self, stop_size: float, limit_size: float,
+                       stop_percentage: bool = False, limit_percentage: bool = False) -> bool:
         if not self._triggered_added:
             self._convert_to_trigger()
 
@@ -315,7 +318,8 @@ class Trade():
         else:
             return ''
 
-    def add_leg(self, order_leg_id: int, symbol: str, quantity: int, asset_type: str, sub_asset_type: str = None) -> List[Dict]:
+    def add_leg(self, order_leg_id: int, symbol: str, quantity: int,
+                asset_type: str, sub_asset_type: str = None) -> List[Dict]:
         # Define the leg.
         leg = {}
         leg['instrument']['symbol'] = symbol

@@ -62,34 +62,65 @@ class StockFrame():
     def add_rows(self, data: dict) -> None:
         column_names = ['open', 'close', 'high', 'low', 'volume']
 
-        for symbol in data:
-            # Parse that timestamp.
+        for quote in data:
+            # Parse the Timestamp.
             time_stamp = pd.to_datetime(
-                data[symbol]['quoteTimeInLong'],
+                quote['datetime'],
                 unit='ms',
-                origin='unix',
+                origin='unix'
             )
-            # Define index.
-            row_id = (symbol, time_stamp)
 
-            # Define our values.
+            # Define the Index Tuple.
+            row_id = (quote['symbol'], time_stamp)
+
+            # Define the values.
             row_values = [
-                data[symbol]['openPrice'],
-                data[symbol]['closePrice'],
-                data[symbol]['highPrice'],
-                data[symbol]['lowPrice'],
-                data[symbol]['askSize'] + data[symbol]['bidSize'],
+                quote['open'],
+                quote['close'],
+                quote['high'],
+                quote['low'],
+                quote['volume']
             ]
 
-            # New row.
+            # Create a new row.
             new_row = pd.Series(data=row_values)
 
             # Add the row.
-            self.frame.location[row_id, column_names] = new_row.values
+            self.frame.loc[row_id, column_names] = new_row.values
+
             self.frame.sort_index(inplace=True)
 
     def do_indicators_exist(self, column_names: List[str]) -> bool:
-        pass
+        if set(column_names).issubset(self._frame.columns):
+            return True
+        else:
+            raise KeyError('The following indicator columns are missing from the StockFrame: {missing_columns}'.format(
+                missing_columns=set(column_names).difference(self._frame.columns)
+            ))
 
-    def _check_signals(self, indicators: dict) -> Union[pd.Series, None]:
-        pass
+    def _check_signals(self, indicators: dict) -> Union[pd.DataFrame, None]:
+        # Grab the last rows.
+        last_rows = self._symbol_groups.tail(1)
+
+        conditions = []
+
+        # Check to see if all the columns exist.
+        if self.do_indicators_exist(column_names=indicators.keys()):
+            for indicator in indicators:
+                column = last_rows[indicator]
+                buy_condition_target = indicators[indicator]['buy']
+                sell_condition_target = indicators[indicator]['sell']
+
+                buy_condition_operator = indicators[indicator]['buy_operator']
+                sell_condition_operator = indicators[indicator]['sell_operator']
+
+                condition_1: pd.Series = buy_condition_operator(column, buy_condition_target)
+                condition_2: pd.Series = sell_condition_operator(column, sell_condition_target)
+
+                condition_1 = condition_1.where(lambda x: x == True).dropna()
+                condition_2 = condition_2.where(lambda x: x == True).dropna()
+
+                conditions.append(('buys', condition_1))
+                conditions.append(('sells', condition_2))
+
+        return conditions

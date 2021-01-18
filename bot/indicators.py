@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+pd.set_option('display.max_columns', 10)  # set this number to >= your number of cols
 
 from typing import Any
 from typing import Dict
@@ -55,7 +56,7 @@ class Indicators:
             lambda x: x.diff()
         )
 
-        #return self._frame
+        return self._frame
 
     def rsi(self, period: int, method: str = 'wilders') -> pd.DataFrame:
         locals_data = locals()
@@ -96,7 +97,7 @@ class Indicators:
 
         # Add the RSI indicator to the data frame.
         # Potential FIXME: may need to switch the first RSI to RS
-        self._frame['rsi'] = np.where(relative_strength_index == 0, 100, 100.0 - (100.0 / (1.0 + relative_strength_index)))
+        self._frame[column_name] = np.where(relative_strength == 0, 100, 100.0 - (100.0 / (1.0 + relative_strength_index)))
 
         # Clean up before sending back.
         self._frame.drop(
