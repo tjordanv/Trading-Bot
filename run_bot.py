@@ -37,17 +37,17 @@ trading_robot_portfolio = trading_robot.create_portfolio()
 multi_position = [
     {
         'asset_type': 'equity',
-        'quantity': 2,
-        'purchase_price': 4.00,
-        'symbol': 'TSLA',
-        'purchase_date': '2021-01-06'
+        'quantity': 79,
+        'purchase_price': 24.19,
+        'symbol': 'WFC',
+        'purchase_date': '2020-05-06'
     },
     {
         'asset_type': 'equity',
-        'quantity': 2,
-        'purchase_price': 4.00,
-        'symbol': 'SQ',
-        'purchase_date': '2021-01-06'
+        'quantity': 4,
+        'purchase_price': 96.44,
+        'symbol': 'DVY',
+        'purchase_date': '2020-11-25'
     }
 ]
 
@@ -56,17 +56,17 @@ new_positions = trading_robot.portfolio.add_positions(positions=multi_position)
 
 # Add a single position to the portfolio.
 trading_robot.portfolio.add_position(
-    symbol='MSFT',
-    quantity=10,
-    purchase_price=10.00,
+    symbol='ZSAN',
+    quantity=55,
+    purchase_price=0.91,
     asset_type='equity',
-    purchase_date='2021-01-08'
+    purchase_date='2021-01-12'
 )
 pprint.pprint(trading_robot.portfolio.positions)
 
 # Check to see if regular market is open.
 if trading_robot.regular_market_open:
-    print('Regular Market Open')
+    pprint.pprint(trading_robot.grab_current_quotes())
 else:
     print('Regular Market Not Open')
 
@@ -84,7 +84,7 @@ else:
 
 # Grab the current quotes in our portfolio.
 current_quotes = trading_robot.grab_current_quotes()
-pprint.pprint(current_quotes)
+#pprint.pprint(current_quotes)
 
 # Define our date range.
 start_date = datetime.today()
@@ -104,7 +104,7 @@ stock_frame = trading_robot.create_stock_frame(
 )
 
 # Print the head of the StockFrame.
-pprint.pprint(stock_frame.frame.head(n=20))
+#pprint.pprint(stock_frame.frame.head(n=20))
 
 # Create a new Trade Object.
 new_trade = trading_robot.create_trade(
@@ -137,7 +137,6 @@ new_trade.add_stop_loss(
 # Print out the order.
 pprint.pprint(new_trade.order)
 
-
 # Create a new indicator client.
 indicator_client = Indicators(price_data_frame=stock_frame)
 
@@ -146,6 +145,9 @@ indicator_client.rsi(period=14)
 
 # Add a 200-day simple moving average.
 indicator_client.sma(period=200)
+
+# Add a 200-day simple moving average.
+indicator_client.sma(period=50)
 
 # Add a 50-day exponential moving average.
 indicator_client.ema(period=50)
@@ -191,7 +193,7 @@ while True:
     trading_robot.execute_signals(signals=signals, trades_to_execute=trade_dict)
 
     # Grab the last bar, keep in mind this is after adding the new rows.
-    last_bar_timestamp = trading_robot.stock_frame.frame.tail(1).index.get_level_values(1)
+    last_bar_timestamp = trading_robot.stock_frame.frame.tail(n=1).index.get_level_values(1)
 
     # Wait till the next bar.
     trading_robot.wait_till_next_bar(last_bar_timestamp=last_bar_timestamp)

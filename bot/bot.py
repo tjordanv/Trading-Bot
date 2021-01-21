@@ -138,7 +138,7 @@ class Bot():
         return quotes
 
     def grab_historical_prices(self, start: datetime, end: datetime, bar_size: int = 1,
-                               bar_type: str = 'minute', symbols: List[str] = None) -> List[Dict]:
+                               bar_type: str = 'minute', symbols: List[str] = None) -> List[dict]:
         self._bar_size = bar_size
         self._bar_type = bar_type
 
@@ -185,12 +185,13 @@ class Bot():
         return self.stock_frame
 
     def get_latest_bar(self) -> List[dict]:
+        # Grab the info from the last quote.
         bar_size = self._bar_size
         bar_type = self._bar_type
 
         # Define our date range.
         end_date = datetime.today()
-        start_date = end_date - timedelta(minutes=15)
+        start_date = end_date - timedelta(days=1)
 
         start = str(milliseconds_since_epoch(dt_object=start_date))
         end = str(milliseconds_since_epoch(dt_object=end_date))
@@ -198,18 +199,8 @@ class Bot():
         latest_prices = []
 
         for symbol in self.portfolio.positions:
-            historical_price_response = self.session.get_price_history(
-                symbol=symbol,
-                period_type='day',
-                start_date=start,
-                end_date=end,
-                frequency_type=bar_type,
-                frequency=bar_size,
-                extended_hours=True
-            )
-
-            if 'error' in historical_price_response:
-                true_time.sleep(2)
+            try:
+                # Grab the request.
                 historical_price_response = self.session.get_price_history(
                     symbol=symbol,
                     period_type='day',
@@ -220,6 +211,22 @@ class Bot():
                     extended_hours=True
                 )
 
+            except:
+
+                true_time.sleep(2)
+
+                # Grab the request.
+                historical_price_response = self.session.get_price_history(
+                    symbol=symbol,
+                    period_type='day',
+                    start_date=start,
+                    end_date=end,
+                    frequency_type=bar_type,
+                    frequency=bar_size,
+                    extended_hours=True
+                )
+
+            # parse the candles.
             for candle in historical_price_response['candles'][-1:]:
                 new_price_mini_dict = {}
                 new_price_mini_dict['symbol'] = symbol
@@ -279,14 +286,14 @@ class Bot():
         {List[dict]} -- Returns all order responses.
         Usage:
         ----
-            >>> trades_dict = {
+            #>>> trades_dict = {
                     'MSFT': {
                         'trade_func': trading_robot.trades['long_msft'],
                         'trade_id': trading_robot.trades['long_msft'].trade_id
                     }
                 }
-            >>> signals = indicator_client.check_signals()
-            >>> trading_robot.execute_signals(
+            #>>> signals = indicator_client.check_signals()
+            #>>> trading_robot.execute_signals(
                     signals=signals,
                     trades_to_execute=trades_dict
                 )
@@ -294,7 +301,7 @@ class Bot():
 
         # Define the Buy and sells.
         buys: pd.Series = signals[0][1]
-        sells: pd.Series = signals[0][1]
+        sells: pd.Series = signals[1][1]
 
         order_responses = []
 
@@ -434,10 +441,9 @@ class Bot():
         {bool} -- `True` if the orders were successfully saved.
         """
 
-        #def default(obj):
-
-         #   if isinstance(obj, bytes):
-          #      return str(obj)
+        def default(obj):
+            if isinstance(obj, bytes):
+                return str(obj)
 
         # Define the folder.
         folder: pathlib.PurePath = pathlib.Path(

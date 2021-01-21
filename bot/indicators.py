@@ -12,7 +12,7 @@ from bot.stock_frame import StockFrame
 
 class Indicators:
     def __init__(self, price_data_frame: StockFrame) -> None:
-        self._stock_frame = StockFrame = price_data_frame
+        self._stock_frame: StockFrame = price_data_frame
         self._price_groups = price_data_frame.symbol_groups
         self._current_indicators = {}
         self._indicator_signals = {}
@@ -89,6 +89,7 @@ class Indicators:
         self._frame['ewma_down'] = self._price_groups['down_day'].transform(
             lambda x: x.ewm(span=period).mean()
         )
+
         # Calculate the relative strength.
         relative_strength = self._frame['ewma_up'] / self._frame['ewma_down']
 
@@ -96,8 +97,8 @@ class Indicators:
         relative_strength_index = 100.0 - (100.0 / (1.0 + relative_strength))
 
         # Add the RSI indicator to the data frame.
-        # Potential FIXME: may need to switch the first RSI to RS
-        self._frame[column_name] = np.where(relative_strength == 0, 100, 100.0 - (100.0 / (1.0 + relative_strength_index)))
+        self._frame[column_name] = np.where(relative_strength_index == 0, 100,
+                                            100 - (100 / (1 + relative_strength_index)))
 
         # Clean up before sending back.
         self._frame.drop(
@@ -157,5 +158,3 @@ class Indicators:
         signals_df = self._stock_frame._check_signals(indicators=self._indicator_signals)
 
         return signals_df
-
-
