@@ -1,6 +1,11 @@
 import numpy as np
 import pandas as pd
+
+# set this number to >= your number of cols
 pd.set_option('display.max_columns', 10)  # set this number to >= your number of cols
+
+# Extend the max width to display on a single line.
+pd.set_option('display.width', 350)
 
 from typing import Any
 from typing import Dict
@@ -110,7 +115,7 @@ class Indicators:
         return self._frame
 
     # Calculate the Simple Moving Average
-    def sma(self, period: int) -> pd.DataFrame:
+    def sma(self, period: int, column_name: str = 'sma') -> pd.DataFrame:
         locals_data = locals()
         del locals_data['self']
 

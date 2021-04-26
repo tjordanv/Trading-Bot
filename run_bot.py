@@ -144,10 +144,10 @@ indicator_client = Indicators(price_data_frame=stock_frame)
 indicator_client.rsi(period=14)
 
 # Add a 200-day simple moving average.
-indicator_client.sma(period=200)
+indicator_client.sma(period=200, column_name='sma_200')
 
-# Add a 200-day simple moving average.
-indicator_client.sma(period=50)
+# Add a 50-day simple moving average.
+indicator_client.sma(period=50, column_name='sma_50')
 
 # Add a 50-day exponential moving average.
 indicator_client.ema(period=50)
