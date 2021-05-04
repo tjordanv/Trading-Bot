@@ -37,8 +37,8 @@ trading_robot_portfolio = trading_robot.create_portfolio()
 multi_position = [
     {
         'asset_type': 'equity',
-        'quantity': 79,
-        'purchase_price': 24.19,
+        'quantity': 100,
+        'purchase_price': 42.85,
         'symbol': 'WFC',
         'purchase_date': '2020-05-06'
     },
@@ -48,6 +48,13 @@ multi_position = [
         'purchase_price': 96.44,
         'symbol': 'DVY',
         'purchase_date': '2020-11-25'
+    },
+    {
+        'asset_type': 'equity',
+        'quantity': 40,
+        'purchase_price': 23.94,
+        'symbol': 'CCIV',
+        'purchase_date': '2021-2-25'
     }
 ]
 
@@ -56,9 +63,9 @@ new_positions = trading_robot.portfolio.add_positions(positions=multi_position)
 
 # Add a single position to the portfolio.
 trading_robot.portfolio.add_position(
-    symbol='ZSAN',
-    quantity=55,
-    purchase_price=0.91,
+    symbol='AMD',
+    quantity=1,
+    purchase_price=91.00,
     asset_type='equity',
     purchase_date='2021-01-12'
 )
