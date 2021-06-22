@@ -197,6 +197,7 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <component name="WindowStateProjectService">
     <state width="1899" height="645" key="GridCell.Tab.0.bottom" timestamp="1619427089889">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -238,6 +239,8 @@
       </breakpoints>
     </breakpoint-manager>
   </component>
+=======
+>>>>>>> ac350c108f17d8ed7b243faa67a5b4bdf0ae9d52
 =======
 >>>>>>> ac350c108f17d8ed7b243faa67a5b4bdf0ae9d52
 </project>
