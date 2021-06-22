@@ -103,7 +103,7 @@ class Indicators:
 
         # Add the RSI indicator to the data frame.
         self._frame[column_name] = np.where(relative_strength_index == 0, 100,
-                                            100 - (100 / (1 + relative_strength_index)))
+                                            100 - (100 / (1 + relative_strength)))
 
         # Clean up before sending back.
         self._frame.drop(
